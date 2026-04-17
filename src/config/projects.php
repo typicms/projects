@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+use TypiCMS\Modules\Projects\Models\Project;
+
 return [
+    'model' => Project::class,
     'linkable_to_page' => true,
     'has_taxonomies' => true,
     'per_page' => 30,
+    'llms_txt' => true,
     'order' => [
         'date' => 'desc',
     ],
