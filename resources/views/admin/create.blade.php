@@ -3,7 +3,7 @@
 @section('title', __('New project'))
 
 @section('content')
-    {!! BootForm::open()->action(route('admin::index-projects'))->addClass('main-content') !!}
+    {!! BootForm::open()->action(route('admin::index-projects'))->addClass('form') !!}
     @include('projects::admin._form')
     {!! BootForm::close() !!}
 @endsection
