@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Projects\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -49,6 +50,7 @@ use TypiCMS\Translatable\HasTranslations;
  */
 #[ObservedBy(SlugObserver::class)]
 #[Unguarded]
+#[Appends(['thumb'])]
 class ProjectCategory extends Model implements Sortable
 {
     use HasConfigurableOrder;
@@ -60,8 +62,6 @@ class ProjectCategory extends Model implements Sortable
     use Historable;
     use Publishable;
     use SortableTrait;
-
-    protected $appends = ['thumb'];
 
     /** @var array<string> */
     public array $translatable = [

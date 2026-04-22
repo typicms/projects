@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Projects\Providers;
 
-use Override;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Override;
 use TypiCMS\Modules\Core\Models\Tag;
 use TypiCMS\Modules\Projects\Composers\SidebarViewComposer;
 use TypiCMS\Modules\Projects\Models\Project;
