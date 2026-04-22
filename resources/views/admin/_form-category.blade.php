@@ -1,4 +1,4 @@
-<x-core::header :$model :backUrl="$model->indexUrl()" :backLabel="__('Categories')" :defaultTitle="__('New project category')" />
+<x-core::header :$model :back-url="$model->indexUrl()" :back-label="__('Categories')" :default-title="__('New project category')" />
 
 <div class="form-body">
     <x-core::form-errors />

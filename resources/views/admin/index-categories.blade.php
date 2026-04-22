@@ -5,7 +5,7 @@
 @section('content')
     <item-list url-base="/api/projects/categories" fields="id,image_id,position,status,title" table="project_categories" title="categories" include="image" :searchable="['title']" :sorting="['position']">
         <template #back-button>
-            <x-core::back-button :backUrl="route('admin::index-projects')" :backLabel="__('Projects')" />
+            <x-core::back-button :back-url="route('admin::index-projects')" :back-label="__('Projects')" />
         </template>
 
         <template #top-buttons v-if="$can('create project_categories')">
