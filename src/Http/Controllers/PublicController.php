@@ -19,7 +19,7 @@ final class PublicController extends BasePublicController
             ->with('image')
             ->get();
 
-        return view('projects::public.index', ['categories' => $categories]);
+        return view('public::projects.index', ['categories' => $categories]);
     }
 
     public function indexOfCategory(string $categorySlug): View
@@ -35,7 +35,7 @@ final class PublicController extends BasePublicController
             ->where('category_id', $category->id)
             ->get();
 
-        return view('projects::public.index-of-category', ['models' => $models, 'category' => $category]);
+        return view('public::projects.index-of-category', ['models' => $models, 'category' => $category]);
     }
 
     public function show(string $categorySlug, string $slug): View
@@ -55,6 +55,6 @@ final class PublicController extends BasePublicController
             ->firstOrFail();
         abort_if($category->id !== $model->category_id, 404);
 
-        return view('projects::public.show', ['model' => $model]);
+        return view('public::projects.show', ['model' => $model]);
     }
 }

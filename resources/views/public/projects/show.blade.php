@@ -1,4 +1,4 @@
-@extends('core::public.master')
+@extends('public::core.master')
 
 @section('title', $model->title . ' – ' . __('Projects') . ' – ' . $websiteTitle)
 @section('ogTitle', $model->title ?? '')
@@ -47,8 +47,8 @@
                 <div class="rich-content">{!! $model->formattedBody() !!}</div>
             @endif
 
-            @include('files::public._document-list')
-            @include('files::public._image-list')
+            @include('public::files._document-list')
+            @include('public::files._image-list')
         </div>
     </article>
 @endsection

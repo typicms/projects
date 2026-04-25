@@ -14,19 +14,19 @@ final class CategoriesAdminController extends BaseAdminController
 {
     public function index(): View
     {
-        return view('projects::admin.index-categories');
+        return view('admin::projects.index-categories');
     }
 
     public function create(): View
     {
         $model = new ProjectCategory;
 
-        return view('projects::admin.create-category', ['model' => $model]);
+        return view('admin::projects.create-category', ['model' => $model]);
     }
 
     public function edit(ProjectCategory $category): View
     {
-        return view('projects::admin.edit-category', ['model' => $category]);
+        return view('admin::projects.edit-category', ['model' => $category]);
     }
 
     public function store(CategoryFormRequest $request): RedirectResponse

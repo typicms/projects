@@ -16,7 +16,7 @@
             {!! BootForm::text(__('Tags'), 'tags')->value(old('tags') ?: $model->tags->pluck('tag')->implode(',')) !!}
 
             <div class="row gx-3 mb-4">
-                @include('taxonomies::admin._checkboxes', ['module' => 'projects'])
+                @include('admin::taxonomies._checkboxes', ['module' => 'projects'])
             </div>
 
             <div class="row gx-3">

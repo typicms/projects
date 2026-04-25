@@ -1,10 +1,10 @@
-@extends('core::admin.master')
+@extends('admin::core.master')
 
 @section('title', $model->presentTitle())
 
 @section('content')
     {!! BootForm::open()->put()->action(route('admin::update-project', $model->id))->addClass('form') !!}
     {!! BootForm::bind($model) !!}
-    @include('projects::admin._form')
+    @include('admin::projects._form')
     {!! BootForm::close() !!}
 @endsection

@@ -24,8 +24,6 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/projects.php');
 
-        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'projects');
-
         $this->publishes([
             __DIR__.'/../../database/migrations/create_project_categories_table.php.stub' => getMigrationFileName(
                 'create_project_categories_table',
@@ -35,17 +33,20 @@ class ModuleServiceProvider extends ServiceProvider
             ),
         ], 'typicms-migrations');
         $this->publishes([
-            __DIR__.'/../../resources/views' => resource_path('views/vendor/projects'),
-        ], 'typicms-views');
+            __DIR__.'/../../resources/views/admin/projects' => resource_path('views/admin/projects'),
+        ], ['typicms-views', 'typicms-admin-views', 'typicms-admin-projects-views']);
+        $this->publishes([
+            __DIR__.'/../../resources/views/public/projects' => resource_path('views/public/projects'),
+        ], ['typicms-views', 'typicms-public-views', 'typicms-public-projects-views']);
         $this->publishes([__DIR__.'/../../resources/scss' => resource_path('scss')], 'typicms-resources');
 
-        View::composer('core::admin._sidebar', SidebarViewComposer::class);
+        View::composer('admin::core._sidebar', SidebarViewComposer::class);
 
         // A project have tags.
         Tag::resolveRelationUsing('projects', fn ($tag) => $tag->morphedByMany(Project::class, 'taggable'));
 
         // Add the page in the view.
-        View::composer('projects::public.*', function ($view): void {
+        View::composer('public::projects.*', function ($view): void {
             $view->page = getPageLinkedToModule('projects');
         });
     }
