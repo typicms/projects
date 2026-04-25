@@ -1,6 +1,6 @@
 @extends('public::core.master')
 
-@section('title', $model->title . ' – ' . __('Projects') . ' – ' . $websiteTitle)
+@section('title', $model->title . ' – ' . __('Projects') . ' – ' . websiteTitle())
 @section('ogTitle', $model->title ?? '')
 @section('description', $model->summary ?? '')
 @section('ogImage', $model->ogImageUrl())
@@ -12,13 +12,13 @@
             <div class="project-header-container">
                 <div class="project-header-navigator">
                     <div class="items-navigator">
-                        <a class="items-navigator-back" href="{{ route($lang . '::projects-category', $model->category->slug) }}">← {{ $model->category->title }}</a>
+                        <a class="items-navigator-back" href="{{ route(app()->getLocale() . '::projects-category', $model->category->slug) }}">← {{ $model->category->title }}</a>
                         <div class="items-navigator-previous-next">
-                            <a class="items-navigator-previous @if (!($prev = (new TypiCMS\Modules\Projects\Models\Project())->prev($model, $model->category_id))) disabled @endif" href="@if ($prev) {{ route($lang . '::project', [$prev->category->slug, $prev->slug]) }} @endif">
+                            <a class="items-navigator-previous @if (!($prev = (new TypiCMS\Modules\Projects\Models\Project())->prev($model, $model->category_id))) disabled @endif" href="@if ($prev) {{ route(app()->getLocale() . '::project', [$prev->category->slug, $prev->slug]) }} @endif">
                                 ←
                                 @lang('Previous')
                             </a>
-                            <a class="items-navigator-next @if (!($next = (new TypiCMS\Modules\Projects\Models\Project())->next($model, $model->category_id))) disabled @endif" href="@if ($next) {{ route($lang . '::project', [$next->category->slug, $next->slug]) }} @endif">
+                            <a class="items-navigator-next @if (!($next = (new TypiCMS\Modules\Projects\Models\Project())->next($model, $model->category_id))) disabled @endif" href="@if ($next) {{ route(app()->getLocale() . '::project', [$next->category->slug, $next->slug]) }} @endif">
                                 @lang('Next')
                                 →
                             </a>

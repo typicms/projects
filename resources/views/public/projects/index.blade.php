@@ -13,7 +13,7 @@
                 <ul class="category-list-list">
                     @foreach ($categories as $category)
                         <li class="category-list-item">
-                            <a class="category-list-item-link" href="{{ route($lang . '::projects-category', [$category->slug]) }}">
+                            <a class="category-list-item-link" href="{{ route(app()->getLocale() . '::projects-category', [$category->slug]) }}">
                                 <div class="category-list-item-title">{{ $category->title }}</div>
                                 <img class="category-list-item-image" src="{{ imageOrDefault($category->image, 600, 400) }}" width="300" height="200" alt="{{ $category->image?->alt_attribute }}" />
                             </a>
