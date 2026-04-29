@@ -54,10 +54,6 @@ Route::middleware('admin')
             ->name('edit-project')
             ->middleware('can:read projects');
         $router
-            ->get('projects/{project}/files', [AdminController::class, 'files'])
-            ->name('edit-project-files')
-            ->middleware('can:update projects');
-        $router
             ->post('projects', [AdminController::class, 'store'])
             ->name('store-project')
             ->middleware('can:create projects');
