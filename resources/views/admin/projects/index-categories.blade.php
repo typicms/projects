@@ -1,8 +1,4 @@
-@extends('admin::core.master')
-
-@section('title', __('Project categories'))
-
-@section('content')
+<x-core::layouts.admin :title="__('Project categories')">
     <item-list url-base="/api/projects/categories" fields="id,image_id,position,status,title" table="project_categories" title="categories" include="image" :searchable="['title']" :sorting="['position']" :draggable="$can('update project_categories')">
         <template #back-button>
             <x-core::back-button :back-url="route('admin::index-projects')" :back-label="__('Projects')" />
@@ -38,4 +34,4 @@
             <td>@{{ model.title_translated }}</td>
         </template>
     </item-list>
-@endsection
+</x-core::layouts.admin>

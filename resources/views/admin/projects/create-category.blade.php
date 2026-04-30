@@ -1,9 +1,5 @@
-@extends('admin::core.master')
-
-@section('title', __('New project category'))
-
-@section('content')
+<x-core::layouts.admin :title="__('New project category')">
     {!! BootForm::open()->action(route('admin::index-project_categories'))->addClass('form') !!}
     @include('admin::projects._form-category')
     {!! BootForm::close() !!}
-@endsection
+</x-core::layouts.admin>
