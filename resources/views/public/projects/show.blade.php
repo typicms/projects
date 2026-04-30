@@ -1,12 +1,12 @@
-@extends('public::core.master')
-
-@section('title', $model->title . ' – ' . __('Projects') . ' – ' . websiteTitle())
-@section('ogTitle', $model->title ?? '')
-@section('description', $model->summary ?? '')
-@section('ogImage', $model->ogImageUrl())
-@section('bodyClass', 'body-projects body-project-' . $model->id . ' body-page body-page-' . $page->id)
-
-@section('content')
+<x-core::layouts.public
+    :title="$model->title . ' – ' . __('Projects') . ' – ' . websiteTitle()"
+    :og-title="$model->title ?? ''"
+    :description="$model->summary ?? ''"
+    :og-image="$model->ogImageUrl()"
+    :body-class="'body-projects body-project-' . $model->id . ' body-page body-page-' . $page->id"
+    :page="$page"
+    :model="$model"
+>
     <article class="project">
         <header class="project-header">
             <div class="project-header-container">
@@ -51,4 +51,4 @@
             @include('public::files._image-list')
         </div>
     </article>
-@endsection
+</x-core::layouts.public>
