@@ -6,12 +6,9 @@
     <div class="row">
         <div class="col-lg-8">
             <x-core::title-and-slug-fields />
-            <div class="mb-3">
-                {!! TranslatableBootForm::hidden('status')->value(0) !!}
-                {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
-            </div>
+            <div class="mb-3">{!! TranslatableBootForm::hidden('status')->value(0) !!} {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}</div>
 
-            {!! BootForm::select(__('Category'), 'category_id', (new TypiCMS\Modules\Projects\Models\ProjectCategory())->allForSelect())->required() !!}
+            {!! BootForm::select(__('Category'), 'category_id', new TypiCMS\Modules\Projects\Models\ProjectCategory()->allForSelect())->required() !!}
 
             {!! BootForm::text(__('Tags'), 'tags')->value(old('tags') ?: $model->tags->pluck('tag')->implode(',')) !!}
 
@@ -21,7 +18,11 @@
 
             <div class="row gx-3">
                 <div class="col-sm-6">
-                    {!! BootForm::date(__('Date'), 'date')->value(old('date') ?: ($model->date ?: now())->format('Y-m-d'))->addClass('datepicker') !!}
+                    {!!
+                        BootForm::date(__('Date'), 'date')
+                            ->value(old('date') ?: ($model->date ?: now())->format('Y-m-d'))
+                            ->addClass('datepicker')
+                    !!}
                 </div>
             </div>
             {!! BootForm::text(__('Website'), 'website')->type('url')->placeholder('https://') !!}

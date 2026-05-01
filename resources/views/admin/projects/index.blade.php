@@ -1,5 +1,14 @@
 <x-core::layouts.admin :title="__('Projects')">
-    <item-list url-base="/api/projects" fields="id,image_id,category_id,date,status,title" table="projects" title="projects" include="image" :exportable="true" :searchable="['title']" :sorting="['-date']">
+    <item-list
+        url-base="/api/projects"
+        fields="id,image_id,category_id,date,status,title"
+        table="projects"
+        title="projects"
+        include="image"
+        :exportable="true"
+        :searchable="['title']"
+        :sorting="['-date']"
+    >
         <template #top-buttons>
             <a href="{{ route('admin::index-project_categories') }}" class="btn btn-sm btn-secondary ms-auto" v-if="$can('read project_categories')">
                 @lang('Categories')
