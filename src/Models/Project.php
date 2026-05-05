@@ -121,7 +121,7 @@ class Project extends Model
         $locale ??= app()->getLocale();
         $route = "{$locale}::project";
         $slug = $this->translate('slug', $locale);
-        $categorySlug = $this->category->translate('slug', $locale);
+        $categorySlug = $this->category?->translate('slug', $locale);
 
         if (Route::has($route) && $slug && $categorySlug) {
             return route($route, [$categorySlug, $slug]);
