@@ -78,13 +78,16 @@ class ProjectCategory extends Model implements Sortable
     /** @return array<string, string> */
     public function allForSelect(): array
     {
-        $categories = static::query()
+        $locale = in_array(app()->getLocale(), locales(), true) ? app()->getLocale() : mainLocale();
+
+        $items = self::query()
             ->order()
             ->get()
+            ->each(fn (self $item) => $item->setLocale($locale))
             ->pluck('title', 'id')
             ->all();
 
-        return ['' => ''] + $categories;
+        return ['' => ''] + $items;
     }
 
     public function url(?string $locale = null): ?string
