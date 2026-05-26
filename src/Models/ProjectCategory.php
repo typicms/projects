@@ -83,7 +83,7 @@ class ProjectCategory extends Model implements Sortable
         $items = self::query()
             ->order()
             ->get()
-            ->each(fn (self $item) => $item->setLocale($locale))
+            ->each(fn (self $item): ProjectCategory => $item->setLocale($locale))
             ->pluck('title', 'id')
             ->all();
 
