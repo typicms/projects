@@ -6,11 +6,13 @@
     <div class="row">
         <div class="col-lg-8">
             <x-core::title-and-slug-fields />
-            <div class="mb-3">{!! TranslatableBootForm::hidden('status')->value(0) !!} {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}</div>
+            <div class="mb-3">
+                <x-transbootform::checkbox :label="__('Published')" name="status" :unchecked-value="0" />
+            </div>
 
-            {!! BootForm::select(__('Category'), 'category_id', new TypiCMS\Modules\Projects\Models\ProjectCategory()->allForSelect())->required() !!}
+            <x-bootform::select :label="__('Category')" name="category_id" :options="new TypiCMS\Modules\Projects\Models\ProjectCategory()->allForSelect()" required />
 
-            {!! BootForm::text(__('Tags'), 'tags')->value(old('tags') ?: $model->tags->pluck('tag')->implode(',')) !!}
+            <x-bootform::text :label="__('Tags')" name="tags" :value="old('tags') ?: $model->tags->pluck('tag')->implode(',')" />
 
             <div class="row gx-3 mb-4">
                 @include('admin::taxonomies._checkboxes', ['module' => 'projects'])
@@ -18,16 +20,12 @@
 
             <div class="row gx-3">
                 <div class="col-sm-6">
-                    {!!
-                        BootForm::date(__('Date'), 'date')
-                            ->value(old('date') ?: ($model->date ?: now())->format('Y-m-d'))
-                            ->addClass('datepicker')
-                    !!}
+                    <x-bootform::date :label="__('Date')" name="date" :value="old('date') ?: ($model->date ?: now())->format('Y-m-d')" class="datepicker" />
                 </div>
             </div>
-            {!! BootForm::text(__('Website'), 'website')->type('url')->placeholder('https://') !!}
+            <x-bootform::text :label="__('Website')" name="website" type="url" placeholder="https://" />
 
-            {!! TranslatableBootForm::textarea(__('Summary'), 'summary')->rows(4) !!}
+            <x-transbootform::textarea :label="__('Summary')" name="summary" rows="4" />
             <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
         </div>
         <div class="col-lg-4">

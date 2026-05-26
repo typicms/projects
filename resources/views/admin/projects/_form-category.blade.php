@@ -6,7 +6,9 @@
     <div class="row">
         <div class="col-lg-8">
             <x-core::title-and-slug-fields />
-            <div class="mb-3">{!! TranslatableBootForm::hidden('status')->value(0) !!} {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}</div>
+            <div class="mb-3">
+                <x-transbootform::checkbox :label="__('Published')" name="status" :unchecked-value="0" />
+            </div>
         </div>
         <div class="col-lg-4">
             <div class="right-column">
