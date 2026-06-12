@@ -20,7 +20,7 @@
 
             <div class="row gx-3">
                 <div class="col-sm-6">
-                    <x-bootform::date :label="__('Date')" name="date" :value="old('date') ?: ($model->date ?: now())->format('Y-m-d')" class="datepicker" />
+                    <x-bootform::date :label="__('Date')" name="date" :default-value="now()->format('Y-m-d')" required />
                 </div>
             </div>
             <x-bootform::text :label="__('Website')" name="website" type="url" placeholder="https://" />
