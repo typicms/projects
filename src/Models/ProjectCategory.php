@@ -20,6 +20,7 @@ use Spatie\EloquentSortable\SortableTrait;
 use TypiCMS\Modules\Core\Models\File;
 use TypiCMS\Modules\Core\Models\History;
 use TypiCMS\Modules\Core\Observers\SlugObserver;
+use TypiCMS\Modules\Core\Support\ModuleUrl;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
 use TypiCMS\Modules\Core\Traits\HasContentPresenter;
 use TypiCMS\Modules\Core\Traits\HasOgImage;
@@ -93,14 +94,8 @@ class ProjectCategory extends Model implements Sortable
     public function url(?string $locale = null): ?string
     {
         $locale ??= app()->getLocale();
-        $route = "{$locale}::projects-category";
-        $slug = $this->translate('slug', $locale);
 
-        if (Route::has($route) && $slug) {
-            return route($route, $slug);
-        }
-
-        return null;
+        return ModuleUrl::item('projects', $this->translate('slug', $locale), $locale);
     }
 
     public function previewUrl(?string $locale = null): ?string

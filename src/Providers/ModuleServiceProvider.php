@@ -56,8 +56,5 @@ class ModuleServiceProvider extends ServiceProvider
         Tag::resolveRelationUsing('projects', fn ($tag) => $tag->morphedByMany(Project::class, 'taggable'));
 
         // Add the page in the view.
-        View::composer('public::projects.*', function ($view): void {
-            $view->page = getPageLinkedToModule('projects');
-        });
     }
 }

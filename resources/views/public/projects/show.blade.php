@@ -1,3 +1,4 @@
+@use('TypiCMS\Modules\Core\Support\ModuleUrl')
 <x-core::layouts.public
     :title="$model->title . ' – ' . __('Projects') . ' – ' . websiteTitle()"
     :og-title="$model->title ?? ''"
@@ -12,7 +13,7 @@
             <div class="project-header-container">
                 <div class="project-header-navigator">
                     <div class="items-navigator">
-                        <a class="items-navigator-back" href="{{ route(app()->getLocale() . '::projects-category', $model->category->slug) }}">← {{ $model->category->title }}</a>
+                        <a class="items-navigator-back" href="{{ ModuleUrl::item('projects', $model->category->slug) }}">← {{ $model->category->title }}</a>
                         <div class="items-navigator-previous-next">
                             <a class="items-navigator-previous @if (!($prev = $model->prev($model->category_id))) disabled @endif" href="@if ($prev) {{ $prev->url() }} @endif">
                                 ←

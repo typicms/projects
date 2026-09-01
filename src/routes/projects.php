@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use TypiCMS\Modules\Core\Models\Page;
+use TypiCMS\Modules\Core\Support\ModuleRoutes;
 use TypiCMS\Modules\Projects\Http\Controllers\AdminController;
 use TypiCMS\Modules\Projects\Http\Controllers\ApiController;
 use TypiCMS\Modules\Projects\Http\Controllers\CategoriesAdminController;
@@ -14,21 +14,11 @@ use TypiCMS\Modules\Projects\Http\Controllers\PublicController;
 /*
  * Front office routes
  */
-if (($page = getPageLinkedToModule('projects')) instanceof Page) {
-    $middleware = $page->private ? ['public', 'auth'] : ['public'];
-    foreach (locales() as $lang) {
-        if ($page->isPublished($lang) && ($path = $page->path($lang))) {
-            Route::middleware($middleware)
-                ->prefix($path)
-                ->name($lang.'::')
-                ->group(function (Router $router): void {
-                    $router->get('/', [PublicController::class, 'index'])->name('index-projects');
-                    $router->get('{category}', [PublicController::class, 'indexOfCategory'])->name('projects-category');
-                    $router->get('{category}/{slug}', [PublicController::class, 'show'])->name('project');
-                });
-        }
-    }
-}
+ModuleRoutes::group('projects', function (Router $router): void {
+    $router->get('/', [PublicController::class, 'index']);
+    $router->get('{category}', [PublicController::class, 'indexOfCategory']);
+    $router->get('{category}/{slug}', [PublicController::class, 'show']);
+});
 
 /*
  * Admin routes
