@@ -10,7 +10,7 @@
         :sorting="['-date']"
     >
         <template #top-buttons>
-            <a href="{{ route('admin::index-project_categories') }}" class="btn btn-sm btn-secondary ms-auto" v-if="$can('read project_categories')">
+            <a href="{{ route('admin::index-project_categories') }}" class="btn-sm btn-solid theme-secondary ms-auto" v-if="$can('read project_categories')">
                 @lang('Categories')
             </a>
             <span v-if="$can('create projects')">

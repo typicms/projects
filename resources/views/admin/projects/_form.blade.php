@@ -4,9 +4,9 @@
     <x-core::form-errors />
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="lg:col-8">
             <x-core::title-and-slug-fields />
-            <div class="mb-3">
+            <div class="mb-5">
                 <x-transbootform::checkbox :label="__('Published')" name="status" :unchecked-value="0" />
             </div>
 
@@ -14,12 +14,12 @@
 
             <x-bootform::text :label="__('Tags')" name="tags" :value="old('tags') ?: $model->tags->pluck('tag')->implode(',')" />
 
-            <div class="row gx-3 mb-4">
+            <div class="row gx-5 mb-7">
                 @include('admin::taxonomies._checkboxes', ['module' => 'projects'])
             </div>
 
-            <div class="row gx-3">
-                <div class="col-sm-6">
+            <div class="row gx-5">
+                <div class="sm:col-6">
                     <x-bootform::date :label="__('Date')" name="date" :default-value="now()->format('Y-m-d')" required />
                 </div>
             </div>
@@ -28,7 +28,7 @@
             <x-transbootform::textarea :label="__('Summary')" name="summary" rows="4" />
             <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
         </div>
-        <div class="col-lg-4">
+        <div class="lg:col-4">
             <div class="right-column">
                 <file-manager></file-manager>
                 <file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>
