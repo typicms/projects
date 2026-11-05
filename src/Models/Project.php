@@ -120,7 +120,7 @@ class Project extends Model
     {
         $locale ??= app()->getLocale();
         $slug = (string) $this->translate('slug', $locale);
-        $categorySlug = (string) $this->category?->translate('slug', $locale);
+        $categorySlug = (string) $this->category->translate('slug', $locale);
 
         if ($slug === '' || $categorySlug === '') {
             return null;
