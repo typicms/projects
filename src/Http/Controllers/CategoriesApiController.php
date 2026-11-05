@@ -31,8 +31,12 @@ final class CategoriesApiController extends BaseApiController
     {
         foreach ($request->only('status', 'position') as $key => $content) {
             if ($category->isTranslatableAttribute($key)) {
+                if (! is_array($content)) {
+                    continue;
+                }
+
                 foreach ($content as $lang => $value) {
-                    $category->setTranslation($key, $lang, $value);
+                    $category->setTranslation($key, (string) $lang, $value);
                 }
             } else {
                 $category->{$key} = $content;
