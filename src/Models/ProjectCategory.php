@@ -76,7 +76,7 @@ class ProjectCategory extends Model implements Sortable
         'order_column_name' => 'position',
     ];
 
-    /** @return array<string, string> */
+    /** @return array<int|string, string> */
     public function allForSelect(): array
     {
         $locale = in_array(app()->getLocale(), locales(), true) ? app()->getLocale() : mainLocale();
