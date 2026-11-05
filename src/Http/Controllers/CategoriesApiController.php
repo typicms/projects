@@ -15,7 +15,7 @@ use TypiCMS\Modules\Projects\Models\ProjectCategory;
 
 final class CategoriesApiController extends BaseApiController
 {
-    /** @return LengthAwarePaginator<int, mixed> */
+    /** @return LengthAwarePaginator<int, ProjectCategory> */
     public function index(Request $request): LengthAwarePaginator
     {
         $query = ProjectCategory::query()->selectFields();
