@@ -88,7 +88,7 @@ class ProjectCategory extends Model implements Sortable
             ->pluck('title', 'id')
             ->all();
 
-        return ['' => ''] + $items;
+        return ['' => ''] + array_filter($items, is_string(...));
     }
 
     public function url(?string $locale = null): ?string
