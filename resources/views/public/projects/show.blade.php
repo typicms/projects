@@ -1,9 +1,9 @@
 <x-core::layouts.public
-    :title="$model->title . ' – ' . __('Projects') . ' – ' . websiteTitle()"
+    :title="$model->title.' – '.__('Projects').' – '.websiteTitle()"
     :og-title="$model->title ?? ''"
     :description="$model->summary ?? ''"
     :og-image="$model->ogImageUrl()"
-    :body-class="'body-projects body-project-' . $model->id . ' body-page body-page-' . $page->id"
+    :body-class="'body-projects body-project-'.$model->id.' body-page body-page-'.$page->id"
     :page="$page"
     :model="$model"
 >
@@ -12,13 +12,22 @@
             <div class="project-header-container">
                 <div class="project-header-navigator">
                     <div class="items-navigator">
-                        <a class="items-navigator-back" href="{{ route(app()->getLocale() . '::projects-category', $model->category->slug) }}">← {{ $model->category->title }}</a>
+                        <a
+                            class="items-navigator-back"
+                            href="{{ route(app()->getLocale() . '::projects-category', $model->category->slug) }}"
+                        >← {{ $model->category->title }}</a>
                         <div class="items-navigator-previous-next">
-                            <a class="items-navigator-previous @if (!($prev = $model->prev($model->category_id))) disabled @endif" href="@if ($prev) {{ $prev->url() }} @endif">
+                            <a
+                                class="items-navigator-previous @if (! ($prev = $model->prev($model->category_id))) disabled @endif"
+                                href="@if ($prev) {{ $prev->url() }} @endif"
+                            >
                                 ←
                                 @lang('Previous')
                             </a>
-                            <a class="items-navigator-next @if (!($next = $model->next($model->category_id))) disabled @endif" href="@if ($next) {{ $next->url() }} @endif">
+                            <a
+                                class="items-navigator-next @if (! ($next = $model->next($model->category_id))) disabled @endif"
+                                href="@if ($next) {{ $next->url() }} @endif"
+                            >
                                 @lang('Next')
                                 →
                             </a>
@@ -36,7 +45,13 @@
 
             @if ($model->image)
                 <figure class="project-picture">
-                    <img class="project-picture-image" src="{{ $model->image->render(2000, 1000) }}" width="{{ $model->image->width }}" height="{{ $model->image->height }}" alt="" />
+                    <img
+                        class="project-picture-image"
+                        src="{{ $model->image->render(2000, 1000) }}"
+                        width="{{ $model->image->width }}"
+                        height="{{ $model->image->height }}"
+                        alt=""
+                    />
                     @if ($model->image->description)
                         <figcaption class="project-picture-legend">{{ $model->image->description }}</figcaption>
                     @endif
