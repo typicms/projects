@@ -47,7 +47,7 @@
         <template #table-row="{ model, checkedModels, loading, sortArray }">
             <td
                 class="drag-handle fg-secondary"
-                v-if="$can('update partners')"
+                v-if="$can('update project_categories')"
                 :style="{ cursor: sortArray[0] === 'position' ? 'grab' : 'default' }"
             >
                 <i :class="['icon-grip-vertical', { 'opacity-50': sortArray[0] !== 'position' }]"></i>
