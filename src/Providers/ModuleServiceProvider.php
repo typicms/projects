@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Projects\Providers;
 
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View as ViewInstance;
 use Override;
 use TypiCMS\Modules\Core\Models\Tag;
 use TypiCMS\Modules\Projects\Composers\SidebarViewComposer;
@@ -53,11 +55,11 @@ class ModuleServiceProvider extends ServiceProvider
         View::composer('admin::core._sidebar', SidebarViewComposer::class);
 
         // A project have tags.
-        Tag::resolveRelationUsing('projects', fn ($tag) => $tag->morphedByMany(Project::class, 'taggable'));
+        Tag::resolveRelationUsing('projects', fn (Tag $tag): MorphToMany => $tag->morphedByMany(Project::class, 'taggable'));
 
         // Add the page in the view.
-        View::composer('public::projects.*', function ($view): void {
-            $view->page = getPageLinkedToModule('projects');
+        View::composer('public::projects.*', function (ViewInstance $view): void {
+            $view->with('page', getPageLinkedToModule('projects'));
         });
     }
 }
