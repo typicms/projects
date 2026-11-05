@@ -1,4 +1,9 @@
-<x-core::header :$model :back-url="$model->indexUrl()" :back-label="__('Projects')" :default-title="__('New project')" />
+<x-core::header
+    :$model
+    :back-url="$model->indexUrl()"
+    :back-label="__('Projects')"
+    :default-title="__('New project')"
+/>
 
 <div class="form-body">
     <x-core::form-errors />
@@ -10,9 +15,18 @@
                 <x-transbootform::checkbox :label="__('Published')" name="status" :unchecked-value="0" />
             </div>
 
-            <x-bootform::select :label="__('Category')" name="category_id" :options="new TypiCMS\Modules\Projects\Models\ProjectCategory()->allForSelect()" required />
+            <x-bootform::select
+                :label="__('Category')"
+                name="category_id"
+                :options="new TypiCMS\Modules\Projects\Models\ProjectCategory()->allForSelect()"
+                required
+            />
 
-            <x-bootform::text :label="__('Tags')" name="tags" :value="old('tags') ?: $model->tags->pluck('tag')->implode(',')" />
+            <x-bootform::text
+                :label="__('Tags')"
+                name="tags"
+                :value="old('tags') ?: $model->tags->pluck('tag')->implode(',')"
+            />
 
             <div class="row gx-5 mb-7">
                 @include('admin::taxonomies._checkboxes', ['module' => 'projects'])
@@ -20,7 +34,12 @@
 
             <div class="row gx-5">
                 <div class="sm:col-6">
-                    <x-bootform::date :label="__('Date')" name="date" :default-value="now()->format('Y-m-d')" required />
+                    <x-bootform::date
+                        :label="__('Date')"
+                        name="date"
+                        :default-value="now()->format('Y-m-d')"
+                        required
+                    />
                 </div>
             </div>
             <x-bootform::text :label="__('Website')" name="website" type="url" placeholder="https://" />
@@ -32,7 +51,13 @@
             <div class="right-column">
                 <file-manager></file-manager>
                 <file-field type="image" field="image_id" :init-file="{{ $model->image ?? 'null' }}"></file-field>
-                <file-field type="image" field="og_image_id" :init-file="{{ $model->ogImage ?? 'null' }}" label="@lang('Social Share Image')" hint="1200 × 630 px"></file-field>
+                <file-field
+                    type="image"
+                    field="og_image_id"
+                    :init-file="{{ $model->ogImage ?? 'null' }}"
+                    label="@lang('Social Share Image')"
+                    hint="1200 × 630 px"
+                ></file-field>
                 <files-field :init-files="{{ $model->files }}"></files-field>
             </div>
         </div>

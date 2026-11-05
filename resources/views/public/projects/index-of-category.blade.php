@@ -1,9 +1,9 @@
 <x-core::layouts.page
     :page="$page"
-    :title="$category->title . ' – ' . __('Projects') . ' – ' . websiteTitle()"
+    :title="$category->title.' – '.__('Projects').' – '.websiteTitle()"
     :og-title="$category->title"
     :og-image="$category->ogImageUrl()"
-    :body-class="'body-projects body-projects-index body-page body-page-' . $page->id"
+    :body-class="'body-projects body-projects-index body-page body-page-'.$page->id"
 >
     <div class="page-body">
         <div class="page-body-container">
